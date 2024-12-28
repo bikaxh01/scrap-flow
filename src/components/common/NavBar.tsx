@@ -7,11 +7,8 @@ async function NavBar() {
   //const userId = await getUserIdServer();
 
   return (
-    <div className=" w-screen">
-      <div className=" flex justify-between  p-1 ml-16 mr-10">
-        <div className=" text-2xl font-bold">
-          <span className=" text-primary">Scrap</span>-Flow
-        </div>
+    <div className=" ">
+      <div className=" flex  justify-end  p-1 ml-16 mr-10">
         <div className="  w-[16] flex gap-7">
           <ThemeToggle />
           <UserButton />
