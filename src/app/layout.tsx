@@ -26,7 +26,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider appearance={{}}>
+    <ClerkProvider appearance={{
+      elements:{
+        formButtonPrimary:"bg-primary hover:bg-primary/90"
+      }
+    }}>
       <html lang="en" suppressHydrationWarning>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}

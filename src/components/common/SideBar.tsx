@@ -1,7 +1,15 @@
 "use client";
 import React from "react";
 import { Button } from "../ui/button";
-import { Coins, DollarSign, Home, Layers2, ShieldCheck, Spline, Workflow } from "lucide-react";
+import {
+  Coins,
+  DollarSign,
+  Home,
+  Layers2,
+  ShieldCheck,
+  Spline,
+  Workflow,
+} from "lucide-react";
 import Link from "next/link";
 import { Separator } from "../ui/separator";
 // import { useRouter } from "next/router";
@@ -45,8 +53,7 @@ function SideBar() {
       </div>
       <Separator />
       <div className=" p-2 ">
-
-      <h1 className=" text-gray-500">TODO CREDITS</h1>
+        <h1 className=" text-gray-500">TODO CREDITS</h1>
       </div>
 
       <div className=" p-2 pt-0 flex flex-col ">
@@ -57,7 +64,7 @@ function SideBar() {
                 key={index}
                 href={item.href}
                 className={` flex  cursor-default items-center  gap-2 p-2    ${
-                  pathName === item.href ? " bg-primary text-secondary " : " "
+                  pathName === item.href ? " bg-primary text-secondary dark:text-white " : " text-gray-500 hover:bg-slate-300 "
                 } rounded-md  text-1xl pr-4 `}
               >
                 <div>{<item.icon size={20} />}</div>

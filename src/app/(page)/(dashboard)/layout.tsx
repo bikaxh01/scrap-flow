@@ -14,7 +14,7 @@ function Layout({ children }: { children: ReactNode }) {
       <div className="col-span-10">
         <NavBar />
         <Separator />
-        <div>{children}</div>
+        <div className=" p-2">{children}</div>
       </div>
     </div>
   );

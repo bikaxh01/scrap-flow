@@ -14,11 +14,30 @@ datasource db {
 }
 
 model user {
-  id           String         @id 
-  firstName    String    
-  lastName     String
-  email        String         @unique
-  avatarUrl    String
-  createdAt    DateTime       @default(now())
+  id        String     @id
+  firstName String
+  lastName  String
+  email     String     @unique
+  avatarUrl String
+  createdAt DateTime   @default(now())
+  workflow  workflow[]
 }
 
+model workflow {
+  id          String         @id @default(cuid())
+  userId      String
+  name        String
+  description String?
+  definition  String
+  status      WORKFLOWSTATUS @default(PUBLIC)
+  createdAt   DateTime       @default(now())
+  updateAt    DateTime       @updatedAt()
+  userid      user           @relation(fields: [userId], references: [id])
+
+  @@unique([name, userId])
+}
+
+enum WORKFLOWSTATUS {
+  DRAFT
+  PUBLIC
+}
