@@ -59,9 +59,9 @@ function SideBar() {
       <div className=" p-2 pt-0 flex flex-col ">
         {Routes.map((item, index) => {
           return (
-            <div>
+            <div key={index}>
               <Link
-                key={index}
+                
                 href={item.href}
                 className={` flex  cursor-default items-center  gap-2 p-2    ${
                   pathName === item.href ? " bg-primary text-secondary dark:text-white " : " text-gray-500 hover:bg-slate-300 "

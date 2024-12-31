@@ -3,8 +3,11 @@ import { Card } from "@/components/ui/card";
 import React, { Suspense } from "react";
 import WorkflowSkeleton from "./_components/WorkflowSkeleton";
 import UserWorkflows from "./_components/UserWorkflows";
+import { CreateWorkflowDialog } from "./_components/CreateWorkflow";
 
 function WorkflowsPage() {
+
+
   return (
     <div className=" flex h-full flex-col  space-y-4">
       <div className=" flex justify-between">
@@ -12,8 +15,8 @@ function WorkflowsPage() {
           <h2 className=" text-primary font-bold text-3xl">Workflows</h2>
           <p className=" text-muted-foreground">Manage your workflows</p>
         </div>
-        <div>
-          <Button>Create Workflow</Button>
+        <div className=" p-2">
+          <CreateWorkflowDialog/>
         </div>
       </div>
       <Suspense fallback={<WorkflowSkeleton />}>
