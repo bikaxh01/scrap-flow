@@ -3,19 +3,21 @@
 import { prisma } from "@/app/config/PrismaClient";
 import { createWorkflowSchema } from "@/schema/workflow/workflowSchema";
 import { auth } from "@clerk/nextjs/server";
+import { WORKFLOWSTATUS } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
 export async function getWorkflows() {
   try {
-    const user = await auth();
-    if (!user.userId) {
+    const { userId } = await auth();
+
+    if (!userId) {
       throw new Error("Unauthorized");
     }
     const workflows = await prisma.workflow.findMany({
       where: {
-        userId: user.userId,
+        userId: userId,
       },
     });
 
@@ -37,7 +39,6 @@ export async function createWorkflow(
     data: { ...values, status: "DRAFT", definition: "Nothing", userId },
   });
 
-
   redirect(`/workflow/editor/${workflow.id}`);
 }
 
@@ -58,4 +59,43 @@ export async function deleteWorkflow(workflowId: string) {
   }
 
   revalidatePath("/workflows");
+}
+
+export async function updateWorkflow({
+  id,
+  definition,
+}: {
+  id: string;
+  definition: string;
+}) {
+  const { userId } = await auth();
+
+  if (!userId) {
+    throw new Error("Unauthorized");
+  }
+
+  const workflow = await prisma.workflow.findUnique({
+    where: {
+      userId,
+      id,
+    },
+  });
+
+  if (!workflow) {
+    throw new Error("Workflow not found");
+  }
+
+  if (workflow.status === WORKFLOWSTATUS.PUBLIC) {
+    throw new Error("can't make changes on published workflow");
+  }
+
+  const update = await prisma.workflow.update({
+    where: {
+      id,
+      userId,
+    },
+    data: {
+      definition,
+    },
+  });
 }
