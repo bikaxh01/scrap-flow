@@ -3,11 +3,14 @@ import React, { useCallback } from "react";
 import StringInput from "./StringInput";
 import { AppNode } from "@/types/NodeTypes";
 import { useReactFlow } from "@xyflow/react";
+import BrowserInstance from "./BrowserInstance";
 function InputFields({ input, nodeId }: { input: InputType; nodeId: string }) {
   const { updateNodeData, getNode } = useReactFlow();
   const node = getNode(nodeId) as AppNode;
+
   const value = node?.data?.inputs?.[input.name];
-  console.log("🚀 ~ InputFields ~ value:", value)
+ 
+
 
   const handleNodeUpdate = useCallback(
     (newValue: string) => {
@@ -31,6 +34,11 @@ function InputFields({ input, nodeId }: { input: InputType; nodeId: string }) {
           nodeId={nodeId}
         />
       );
+
+      case TaskParamType.BROWSER_TO_INSTANCE :
+        return (
+          <BrowserInstance/>
+        )
     default:
       return (
         <div className=" text-muted-foreground font-semibold">

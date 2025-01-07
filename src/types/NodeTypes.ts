@@ -1,6 +1,11 @@
 import { Node } from "@xyflow/react"
+import { string } from "zod"
+
+
 export enum TaskType{
-    LAUNCH_BROWSER = "LAUNCH_BROWSER"
+    LAUNCH_BROWSER = "LAUNCH_BROWSER",
+    PAGE_TO_HTML = "PAGE_TO_HTML",
+    EXTRACT_TEXT_FROM_ELEMENT="EXTRACT_TEXT_FROM_ELEMENT"
 }
 
 export interface AppNodeData {
@@ -14,7 +19,9 @@ export interface AppNode extends Node {
 }
 
 export enum TaskParamType {
-    STRING = "string"
+    STRING = "string",
+    BROWSER_TO_INSTANCE = "BROWSER_TO_INSTANCE",
+    
 }
 
 export interface InputType {
@@ -25,4 +32,9 @@ export interface InputType {
     hideHandle?:boolean,
     [key:string]:any
 
+}
+
+export interface OutputType {
+    name:string,
+    type:TaskParamType
 }

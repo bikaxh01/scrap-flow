@@ -16,5 +16,8 @@ export const LaunchBrowserTask = {
       require:true,
       hideHandle:true
     }
-  ]
+  ],
+  outputs:[{
+    name:"web page",type:TaskParamType.BROWSER_TO_INSTANCE
+  }]
 };

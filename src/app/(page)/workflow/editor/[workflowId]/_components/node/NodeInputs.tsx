@@ -4,21 +4,28 @@ import React, { ReactNode } from "react";
 import InputFields from "./InputFields";
 
 export function NodeInputs({ children }: { children: ReactNode }) {
-  return <div className="  border border-t-2 p-2">{children}</div>;
+  return <div className=" flex flex-col divide-y gap-1">{children}</div>;
 }
 
-export function NodeInput({ input,nodeId }: { input: InputType,nodeId:string }) {
-
+export function NodeInput({
+  input,
+  nodeId,
+}: {
+  input: InputType;
+  nodeId: string;
+}) {
   return (
     <div>
-      <InputFields nodeId={nodeId}  input={input}/>
+      <InputFields nodeId={nodeId} input={input} />
       {!input.hideHandle && (
-        <Handle
-          id={input.name}
-          position={Position.Left}
-          type="target"
-          className=" !bg-muted-foreground !border-background !border-2  !w-4 !h-4"
-        />
+        <div className="    flex justify-start  relative p-3 w-full  bg-secondary">
+          <Handle
+            id={input.name}
+            position={Position.Left}
+            type="target"
+            className="  !bg-muted-foreground !border-background !border-2   !w-4 !h-4"
+          />
+        </div>
       )}
     </div>
   );

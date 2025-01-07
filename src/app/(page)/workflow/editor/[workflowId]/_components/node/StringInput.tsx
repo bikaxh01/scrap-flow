@@ -18,7 +18,7 @@ function StringInput({
   const [initialValue, setInitialValue] = useState(value);
   const id = useId();
   return (
-    <div className=" flex flex-col gap-2">
+    <div className=" flex flex-col gap-2 p-2">
       <Label htmlFor={id} className=" text-xs">
         {input.name}{" "}
         {input.require && (
